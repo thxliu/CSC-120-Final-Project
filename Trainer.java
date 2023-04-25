@@ -10,6 +10,7 @@ public class Trainer {
     public Trainer(String name, int trainer_level) {
         this.name = name;
         this.trainer_level = 1;
+        ArrayList<String> Attacks = ;
     }
 
     public void learn() {
@@ -17,7 +18,8 @@ public class Trainer {
     }
 
     public Pokemon chooseStarter(Pokemon starter) {
-
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("");
         return starter;
     }
 }
