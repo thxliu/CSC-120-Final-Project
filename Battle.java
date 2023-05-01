@@ -33,7 +33,7 @@ public class Battle {
         }
 
     }   
-    
+}
 }
 
 // What user should see
