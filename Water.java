@@ -1,24 +1,21 @@
 class Water extends Pokemon {
-    public Water(String type, String starterPokemon, int HP) {
-        super(type, starterPokemon, HP);
-        this.type = "water";
-        this.HP = HP;
+    
+    public Water(Pokemon_Types type, String starterPokemon) {
+        super(type, starterPokemon);
+        // this.type = Pokemon_Types.WATER;
+        type = Pokemon_Types.WATER;
+        this.type = type;
+        this.nextPokemon = "Poliwhirl";
+        this.finalPokemon = "Poliwrath";
     }
 
-    public void evolve() {
-        if (this.HP >= 200) {
-            this.starterPokemon = "Poliwrath";
-        } else if (this.HP >= 150) {
-            this.starterPokemon = "Poliwhirl";
-        } 
-    }
-
-    public void heal(){
+    public Water() {
 
     }
 
     public static void main(String[] args) {
-        Pokemon myPokemon = new Water("water", "Poliwag", 170);
-        myPokemon.evolve();
+        Water myWaterPokemon = new Water("Poliwag");
+        myWaterPokemon.HP = 180;
+        myWaterPokemon.evolve();
     }
 }
