@@ -1,5 +1,4 @@
 public class Pokemon {
-    // private Pokemon_Types type;
     public Pokemon_Types type;
     String starterPokemon;
     int HP;
@@ -7,25 +6,13 @@ public class Pokemon {
     String nextPokemon;
     String finalPokemon;
     
-    public Pokemon(Pokemon_Types type, String starterPokemon) {
+    public Pokemon(Pokemon_Types type) {
         this.type = type;
-        this.starterPokemon = starterPokemon;
-        // HP = 100;
         this.HP = 100;
-        this.nextPokemon = nextPokemon;
-        this.finalPokemon = finalPokemon;
         System.out.println("Congratulations! Here is your pokémon " + this.starterPokemon + " of type " + this.type
                 + " and HP " + this.HP + ".");
     }
 
-    /**
-     * getter for private attribute FuelType f
-     * @return returns the fuel type for this engine
-     */
-    // public Pokemon_Types getPokemonType(){
-    //     return this.type;
-    // }    
-    
     public void evolve() {
         if (this.HP >= 200) {
             this.starterPokemon = this.finalPokemon;
