@@ -1,9 +1,8 @@
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
 
-public class Battle {
+public class Battle extends Trainer{
     int shields;
     Pokemon opponent;
     int trainer_damage;
@@ -11,10 +10,12 @@ public class Battle {
     Trainer myTrainer;
     Pokemon myPokemon;
     Hashtable<String, Integer> opponent_list;
+    int attack_damage;
 
     public Battle() {
         this.shields = 2;
         this.opponent_list = new Hashtable<String, Integer>();
+        this.attack_damage = 0;
     }
 
     public void generateOpponent() {
@@ -28,9 +29,9 @@ public class Battle {
         Random random = new Random();
         int randomInt = random.nextInt(opponent_list.size());
         ArrayList<String> opponentNames = new ArrayList<>(opponent_list.keySet()); 
-        String randomOpponentName = opponentNames.get(randomInt);
-        int opponentXP = opponent_list.get(randomOpponentName);
-        System.out.println("Generated opponent: " + randomOpponentName + " of XP " + opponentXP + ".");
+        String opponentName = opponentNames.get(randomInt);
+        int opponentXP = opponent_list.get(opponentName);
+        System.out.println("Generated opponent: " + opponentName + " of XP " + opponentXP + ".");
     }
 
     public int defend() {
@@ -42,15 +43,14 @@ public class Battle {
     }
 
     public int attack() {
-        System.out.println(opponent + " is attacking! \n" + "You have " + this.shields + " left. \n"
-                + "Do you want to use a shield? (Type yes or no)");
+        System.out.println(opponent + " is attacking! \n" + "You have " + this.shields + " left. \n" + "Do you want to use a shield? (Type yes or no)");
         String shield_use = Input.getScanner().nextLine();
         if (shield_use.equalsIgnoreCase("yes")) {
             defend();
         } else {
             System.out.println("Do you wish to counterattack? Type Y for yes or N for no.");
             String counter_attack = Input.getScanner().nextLine();
-            if (counter_attack.equalsIgnoreCase("yes")) {
+            if (counter_attack.equalsIgnoreCase("Y")) {
                 System.out.println("How would you like to attack? Here are your options: ");
                 System.out.println(myTrainer.learned_attacks);
                 long startTime = System.currentTimeMillis();
@@ -60,36 +60,26 @@ public class Battle {
                 long time = (endTime - startTime)/1000; 
                 System.out.println(time);
                 if (time <= 5) {
-                    int attack_damage = 50;
+                    attack_damage = 50;
                     System.out.println("Attacking " + opponent + " with " + chosenAttack + " with " + attack_damage + "xp");
                 } else if (5 < time && time <= 10) {
-                    int attack_damage = 25;
+                    attack_damage = 25;
                 } else {
-                    int attack_damage = 10;
-                }
-                int attack_damage;
+                    attack_damage = 10;
+                } 
                 System.out.println("Attacking " + opponent + " with " + chosenAttack + " with " + attack_damage + "xp");
+                
             } else {
                 System.out.println("You have chosen not to counterattack. " + opponent);
             }
-
         }
+        return attack_damage;
     }
 
     public static void main(String[] args) {
         Battle myBattle = new Battle();
         myBattle.learn();
         myBattle.attack();
-        // myBattle.generateOpponent();
     }
 }
 
-// What user should see
-
-// Generates opponent
-// Opponent is throwing an attack! You have # shields left. Do you want to use a
-// shield? (Type yes or no)
-// if yes, hp stays the same
-// if not using shields or have 0 shields; type in attack;
-// if typed in less than 5 (or some #) seconds, power of attack stays same, if
-// more, attack is less powerful

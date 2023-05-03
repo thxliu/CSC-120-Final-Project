@@ -29,16 +29,6 @@ public class Trainer {
     public int getXP() {
         return this.xp;
     }
-    
-    public String chooseStarter() {
-        System.out.println("Choose your Pokemon type: ");
-        for (Pokemon_Types type : Pokemon_Types.values()) {
-            System.out.println(type);
-        }
-        String chosenStarter = Input.getScanner().nextLine();
-        System.out.println("Here is your starter Pokemon of type " + chosenStarter);
-        return chosenStarter;
-    }
 
     public void learn() {
         ArrayList<String> full_attack_list = new ArrayList<>();
@@ -85,15 +75,6 @@ public class Trainer {
 
     public static void start() {
         Trainer myTrainer = new Trainer();
-        System.out.println("Would you like to choose a starter Pokemon? Enter Y for yes or N for no.");
-        String chosenStarter = Input.getScanner().nextLine();
-        if (chosenStarter.equalsIgnoreCase("Y")) {
-            myTrainer.chooseStarter();
-        } else if (chosenStarter.equals("N")) {
-            System.out.println("Come back later, have a great day!");
-        } else {
-            throw new RuntimeException("That was not a valid option. Please try again.");
-        }
         System.out.println("Would you like to learn new attacks? Enter Y for yes or N for no.");
         String user_learns = Input.getScanner().nextLine();
         if (user_learns.equalsIgnoreCase("Y")) {
