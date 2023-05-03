@@ -5,6 +5,8 @@ public class Trainer {
     private String name;
     private int trainer_level;
     protected ArrayList<String> learned_attacks = new ArrayList<>();
+    private int xp;
+    Pokemon myPokemon;
 
     public Trainer() {
         // super(type);
@@ -22,6 +24,20 @@ public class Trainer {
 
     public int getTrainerLevel() {
         return this.trainer_level;
+    }
+
+    public int getXP() {
+        return this.xp;
+    }
+    
+    public String chooseStarter() {
+        System.out.println("Choose your Pokemon type: ");
+        for (Pokemon_Types type : Pokemon_Types.values()) {
+            System.out.println(type);
+        }
+        String chosenStarter = Input.getScanner().nextLine();
+        System.out.println("Here is your starter Pokemon of type " + chosenStarter);
+        return chosenStarter;
     }
 
     public void learn() {
