@@ -1,40 +1,133 @@
+import java.util.ArrayList;
+
 public class Pokemon {
-    public Pokemon_Types type;
-    String starterPokemon;
-    int HP;
-    int currentHP;
-    String nextPokemon;
-    String finalPokemon;
-    
+    protected final Pokemon_Types type;
+    private final ArrayList<String> fairy = new ArrayList<>();
+    private final ArrayList<String> normal = new ArrayList<>();
+    private final ArrayList<String> fire = new ArrayList<>();
+    private final ArrayList<String> water = new ArrayList<>();
+    private final ArrayList<String> dragon = new ArrayList<>();
+    private final ArrayList<String> grass = new ArrayList<>();
+    String chosenStarter;
+    int xp;
+
     public Pokemon(Pokemon_Types type) {
         this.type = type;
-        this.HP = 100;
-        System.out.println("Congratulations! Here is your pokémon " + this.starterPokemon + " of type " + this.type
-                + " and HP " + this.HP + ".");
+        fairy.add("Togepi");
+        fairy.add("Togetic");
+        fairy.add("Togekiss");
+        normal.add("Lillipup");
+        normal.add("Herdier");
+        normal.add("Stoutland");
+        fire.add("Cyndaquil");
+        fire.add("Quilava");
+        fire.add("Typhlosion");
+        water.add("Poliwag");
+        water.add("Poliwhirl");
+        water.add("Poliwrath");
+        dragon.add("Dratini");
+        dragon.add("Dragonair");
+        dragon.add("Dragonite");
+        grass.add("Chikorita");
+        grass.add("Bayleef");
+        grass.add("Meganium");
+    }
+
+    public String chooseStarter() {
+        System.out.println("Choose your Pokemon type: ");
+        for (Pokemon_Types type : Pokemon_Types.values()) {
+            System.out.println(type);
+        }
+        String chosenStarter = Input.getScanner().nextLine();
+        System.out.println("Here is your starter Pokemon of type " + chosenStarter);
+        return chosenStarter;
     }
 
     public void evolve() {
-        if (this.HP >= 200) {
-            this.starterPokemon = this.finalPokemon;
-            System.out.println("Your Pokémon has successfully evolved into " + this.starterPokemon + ".");
-        } if (this.HP >= 150) {
-            this.starterPokemon = this.nextPokemon;
-            System.out.println("Your Pokémon has successfully evolved into " + this.starterPokemon + ".");
-        } else {
-            System.out.println(this.starterPokemon + " does not have enough HP to evolve. Please continue training and try again later.");
+        if (chosenStarter.equals("fairy")) {
+            if (xp >= 150 && xp < 200) {
+                chosenStarter = fairy.get(1);
+                System.out.println("Your pokemon has successfully evolved into " + chosenStarter + " with XP of " + xp
+                        + ". Congratulations!");
+            } else if (xp >= 200) {
+                chosenStarter = fairy.get(2);
+                System.out.println("Your pokemon has successfully evolved into " + chosenStarter + " with XP of " + xp
+                        + ". Congratulations!");
+            } else {
+                System.out.println(chosenStarter
+                        + " does not have enough XP to evolve. Please continue training and try again later.");
+            }
+        }
+        if (chosenStarter.equals("normal")) {
+            if (xp >= 150 && xp < 200) {
+                chosenStarter = normal.get(1);
+                System.out.println("Your pokemon has successfully evolved into " + chosenStarter + " with XP of " + xp
+                        + ". Congratulations!");
+            } else if (xp >= 200) {
+                chosenStarter = fairy.get(2);
+                System.out.println("Your pokemon has successfully evolved into " + chosenStarter + " with XP of " + xp
+                        + ". Congratulations!");
+            } else {
+                System.out.println(chosenStarter
+                        + " does not have enough XP to evolve. Please continue training and try again later.");
+            }
+        }
+        if (chosenStarter.equals("fire")) {
+            if (xp >= 150 && xp < 200) {
+                chosenStarter = fire.get(1);
+                System.out.println("Your pokemon has successfully evolved into " + chosenStarter + " with XP of " + xp
+                        + ". Congratulations!");
+            } else if (xp >= 200) {
+                chosenStarter = fire.get(2);
+                System.out.println("Your pokemon has successfully evolved into " + chosenStarter + " with XP of " + xp
+                        + ". Congratulations!");
+            } else {
+                System.out.println(chosenStarter
+                        + " does not have enough XP to evolve. Please continue training and try again later.");
+            }
+        }
+        if (chosenStarter.equals("water")) {
+            if (xp >= 150 && xp < 200) {
+                chosenStarter = water.get(1);
+                System.out.println("Your pokemon has successfully evolved into " + chosenStarter + " with XP of " + xp
+                        + ". Congratulations!");
+            } else if (xp >= 200) {
+                chosenStarter = water.get(2);
+                System.out.println("Your pokemon has successfully evolved into " + chosenStarter + " with XP of " + xp
+                        + ". Congratulations!");
+            } else {
+                System.out.println(chosenStarter
+                        + " does not have enough XP to evolve. Please continue training and try again later.");
+            }
+        }
+        if (chosenStarter.equals("dragon")) {
+            if (xp >= 150 && xp < 200) {
+                chosenStarter = dragon.get(1);
+                System.out.println("Your pokemon has successfully evolved into " + chosenStarter + " with XP of " + xp
+                        + ". Congratulations!");
+            } else if (xp >= 200) {
+                chosenStarter = dragon.get(2);
+                System.out.println("Your pokemon has successfully evolved into " + chosenStarter + " with XP of " + xp
+                        + ". Congratulations!");
+            } else {
+                System.out.println(chosenStarter
+                        + " does not have enough XP to evolve. Please continue training and try again later.");
+            }
+        }
+        if (chosenStarter.equals("grass")) {
+            if (xp >= 150 && xp < 200) {
+                chosenStarter = grass.get(1);
+                System.out.println("Your pokemon has successfully evolved into " + chosenStarter + " with XP of " + xp
+                        + ". Congratulations!");
+            } else if (xp >= 200) {
+                chosenStarter = grass.get(2);
+                System.out.println("Your pokemon has successfully evolved into " + chosenStarter + " with XP of " + xp
+                        + ". Congratulations!");
+            } else {
+                System.out.println(chosenStarter
+                        + " does not have enough XP to evolve. Please continue training and try again later.");
+            }
         }
     }
 
-    public void heal() {
-        if (this.HP <= HP) {
-            this.HP = currentHP;
-            System.out.println(this.starterPokemon + " has been healed. Current HP level at " + currentHP + ".");
-        }
-    }
-
-    public static void main(String[] args) {
-        Pokemon myPokemon = new Pokemon(Pokemon_Types.WATER, "Poliwag");
-        myPokemon.HP = 180;
-        myPokemon.evolve();
-    }
 }
