@@ -12,7 +12,7 @@ public class GUI extends Frame implements ActionListener {
     int index;
     ImageIcon selectedPokemon;
     ArrayList<String> pokemonImages;
-    public static String chosenStarter;
+    public static String chosenType;
 
     public GUI() {
         // Make sure we have nice window decorations.
@@ -69,18 +69,18 @@ public class GUI extends Frame implements ActionListener {
             selectedPokemon = new ImageIcon(pokemonImages.get(index));
             String starter = pokemonImages.get(index);
             if (starter.equals("DRAGON.png")) {
-                chosenStarter.equals("dragon");
+                chosenType = "dragon";
             } else if (starter.equals("FAIRY.jpg")) {
-                chosenStarter.equals("fairy");
+                chosenType = "fairy";
             } else if (starter.equals("FIRE.png")) {
-                chosenStarter.equals("fire");
+                chosenType = "fire";
             }  else if (starter.equals("GRASS.png")) {
-                chosenStarter.equals("grass");
+                chosenType = "grass";
             } else if (starter.equals("NORMAL.jpg")) {
-                chosenStarter.equals("normal");
+                chosenType = "normal";
             } else {
-                chosenStarter.equals("water");
-            }
+                chosenType = "water";
+            }            
         }
         DisplayImage();
 

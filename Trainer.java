@@ -5,16 +5,13 @@ public class Trainer {
     private String name;
     private int trainer_level;
     protected ArrayList<String> learned_attacks = new ArrayList<>();
-    private int xp;
-    Pokemon myPokemon;
+    private Pokemon chosenStarter;
 
     public Trainer() {
-        // super(type);
         System.out.println("Welcome new trainer! Please enter your Trainer name: ");
         this.name = Input.getScanner().nextLine();
         System.out.println("Hope you enjoy, " + name + "!");
         this.trainer_level = 1;
-        this.xp = 0;
         this.learned_attacks = new ArrayList<>();
     }
 
@@ -26,9 +23,10 @@ public class Trainer {
         return this.trainer_level;
     }
 
-    public int getXP() {
-        return this.xp;
+    public String getStarterPokemon() {
+        return chosenStarter;
     }
+
 
     public void learn() {
         ArrayList<String> full_attack_list = new ArrayList<>();
@@ -48,8 +46,7 @@ public class Trainer {
             } else if (learn_attack.equalsIgnoreCase("blast")) {
                 learned_attacks.add("blast");
             } else {
-                throw new RuntimeException(learn_attack
-                        + " is not a valid attack. Please enter one of the following: punch, kick, slam, blast.");
+                throw new RuntimeException(learn_attack + " is not a valid attack. Please enter one of the following: punch, kick, slam, blast.");
             }
             if (this.learned_attacks.containsAll(full_attack_list)) {
                 this.xp += 50;
