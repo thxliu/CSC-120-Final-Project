@@ -1,16 +1,33 @@
 import java.util.ArrayList;
 
+/**
+ * Represents a Pokemon.
+ */
 public class Pokemon {
-  private final ArrayList<String> fairy = new ArrayList<>();
-  private final ArrayList<String> normal = new ArrayList<>();
-  private final ArrayList<String> fire = new ArrayList<>();
-  private final ArrayList<String> water = new ArrayList<>();
-  private final ArrayList<String> dragon = new ArrayList<>();;
-  private final ArrayList<String> grass = new ArrayList<>();;
-  protected static String chosenStarter;
+  /** Array list of fairy type Pokemon. */
+  ArrayList<String> fairy = new ArrayList<>();
+  /** Array list of normal type Pokemon. */
+  ArrayList<String> normal = new ArrayList<>();
+  /** Array list of fire type Pokemon. */
+  ArrayList<String> fire = new ArrayList<>();
+  /** Array list of water type Pokemon. */
+  ArrayList<String> water = new ArrayList<>();
+  /** Array list of dragon type Pokemon. */
+  ArrayList<String> dragon = new ArrayList<>();
+  /** Array list of grass type Pokemon. */
+  ArrayList<String> grass = new ArrayList<>();
+  /** User's chosenStarter Pokemon based on chosenType*/
+  static String chosenStarter;
+  /** Pokemon's XP (experience points) */
   private int xp;
+  /** User's chosen type of Pokemon */
   private String chosenType;
 
+  /**
+   * Constructor for Pokemon.
+   * Sets user's XP to 100.
+   * Adds Pokemon to corresponding ArrayList based on type.
+   */
   public Pokemon() {
     this.xp = 100;
     fairy.add("Togepi");
@@ -33,21 +50,23 @@ public class Pokemon {
     grass.add("Meganium");
   }
 
+  /**
+   * Generates starter pokemon from user's chosenType in GUI.
+   * @return chosenStarter The user's starter Pokemon
+   */
   public String chooseStarterType() {
-    System.out.println("Choose your Pokemon type: dragon, fairy, fire, grass, normal, water.");
-    chosenType = Input.getScanner().nextLine();
     System.out.println("Generating starter Pokemon...");
-    if (this.chosenType.equals("fairy")) {
+    if (GUI.chosenType.equals("fairy")) {
       chosenStarter = fairy.get(0);
-    } else if (this.chosenType.equals("normal")) {
+    } else if (GUI.chosenType.equals("normal")) {
       chosenStarter = normal.get(0);
-    } else if (this.chosenType.equals("fire")) {
+    } else if (GUI.chosenType.equals("fire")) {
       chosenStarter = fire.get(0);
-    } else if (this.chosenType.equals("water")) {
+    } else if (GUI.chosenType.equals("water")) {
       chosenStarter = water.get(0);
-    } else if (this.chosenType.equals("dragon")) {
+    } else if (GUI.chosenType.equals("dragon")) {
       chosenStarter = dragon.get(0);
-    } else if (this.chosenType.equals("grass")) {
+    } else if (GUI.chosenType.equals("grass")) {
       chosenStarter = grass.get(0);
     } else {
       throw new RuntimeException("That is not a valid Pokemon type. Please try again.");
@@ -56,10 +75,17 @@ public class Pokemon {
     return chosenStarter;
   }
 
+  /**
+   * Accessor for Pokemon's XP.
+   * @return The Pokemon's XP
+   */
   public int getXp() {
     return this.xp;
   }
 
+  /**
+   * Evolves Pokemon based on number of XP. 
+   */
   public void evolve() {
     if (this.chosenType.equals("fairy")) {
       if (this.xp >= 150 && this.xp < 200) {
@@ -159,6 +185,10 @@ public class Pokemon {
     }
   }
 
+  /**
+   * Main method used to create new Pokemon and calls chooseStarterType() on that Pokemon.
+   * @param args The command line arguments
+   */
   public static void main(String[] args) {
     Pokemon myPokemon = new Pokemon();
     myPokemon.chooseStarterType();
