@@ -1,32 +1,63 @@
 import java.util.ArrayList;
 
+/**
+ * Represents a Trainer class
+ */
 public class Trainer extends Pokemon {
 
-  protected String name;
+  /** Trainer's name inputted by the user */
+  private static String name;
+  /** Trainer's trainer_level */
   private int trainer_level;
-  protected static ArrayList<String> learned_attacks = new ArrayList<>();
+  /** static ArrayList of attacks the Trainer has learned */
+  static ArrayList<String> learned_attacks = new ArrayList<>();
+  /** static instance of Pokemon */
   static Pokemon pokemon;
+  /** The pokemon that belongs to the Trainer's XP */
+  static int pokemonXP;
 
+  /**
+   * Constructor for Trainer.
+   * Sets name equal to user input and trainer level equal to 1.
+   * Initializes learned_attacks ArrayList.
+   */
   public Trainer() {
-    System.out.println("Welcome new trainer! Please enter your Trainer name: ");
-    this.name = Input.getScanner().nextLine();
+    System.out.println("Welcome new trainer!");
+    System.out.println("Now, please enter your Trainer name: ");
+    name = Input.getScanner().nextLine();
     System.out.println("Hope you enjoy, " + name + "!");
     this.trainer_level = 1;
     learned_attacks = new ArrayList<>();
   }
 
-  public String getTrainerName() {
-    return this.name;
+  /**
+   * Accessor for Trainer's name.
+   * @return The Trainer's name
+   */
+  public static String getTrainerName() {
+    return Trainer.name;
   }
 
+  /**
+   * Accessor for Trainer's level.
+   * @return The Trainer's level.
+   */
   public int getTrainerLevel() {
     return this.trainer_level;
   }
 
+  /**
+   * Accessor for the Pokemon's XP that belongs to the Trainer.
+   * @return The Pokemon's XP
+   */
   public int getPokemonXp() {
     return pokemon.getXp();
   }
 
+  /**
+   * Allows user to learn new attacks by typing in the name of the attack.
+   * User's pokemon earns 50 XP if all attacks are learned.
+   */
   public static void learn() {
     ArrayList<String> full_attack_list = new ArrayList<>();
     full_attack_list.add("punch");
@@ -45,14 +76,18 @@ public class Trainer extends Pokemon {
       } else if (learn_attack.equalsIgnoreCase("blast")) {
         learned_attacks.add("blast");
       } else {
-        throw new RuntimeException(learn_attack +
+        System.out.println(learn_attack +
             " is not a valid attack. Please enter one of the following: punch, kick, slam, blast.");
+            learn();
       }
       if (learned_attacks.containsAll(full_attack_list)) {
-        int pokemonXP = pokemon.getXp() + 50;
+        try {
+          pokemonXP = pokemon.getXp() + 50;
+        } catch (NullPointerException e) {
+          pokemonXP = pokemon.getXp();
+        }
         System.out.println(
-            "You have unlocked all possible attacks! Your pokemon has earned 50 XP. Your pokemon's XP is now" +
-                pokemonXP);
+            "You have unlocked all possible attacks! Your pokemon has earned 50 XP. Your pokemon's XP is now" + pokemonXP);
         break;
       }
       System.out.println("Do you want to continue learning attacks? Type Y for yes or N for no.");
@@ -60,7 +95,6 @@ public class Trainer extends Pokemon {
       if (userStopLearning.equalsIgnoreCase("Y")) {
         continue;
       } else if (userStopLearning.equalsIgnoreCase("N")) {
-        System.out.println("Come back later to learn more attacks, have a great day!");
         break;
       } else {
         throw new RuntimeException("That was not a valid option. Please try again.");
@@ -72,6 +106,9 @@ public class Trainer extends Pokemon {
     }
   }
 
+  /**
+   * Creates pokemon, calls chooseStarterType, asks if Trainer wants to learn new attacks.
+   */
   public static void start() {
     // Trainer trainer = new Trainer();
     // System.out.println("Welcome new trainer! Please enter your Trainer name: ");
@@ -83,16 +120,21 @@ public class Trainer extends Pokemon {
     System.out.println("Would you like to learn new attacks? Enter Y for yes or N for no.");
     String user_learns = Input.getScanner().nextLine();
     if (user_learns.equalsIgnoreCase("Y")) {
-      learn();
+      Trainer.learn();
     } else if (user_learns.equalsIgnoreCase("N")) {
       System.out.println("Come back later, have a great day!");
     } else {
-      throw new RuntimeException("That was not a valid option. Please try again.");
+      System.out.println("That was not a valid option. Please try again.");
+      Trainer.learn();
     }
   }
 
+  /**
+   * Main method used to test Trainer methods.
+   * @param args The command line args
+   */
   public static void main(String[] args) {
-    // Trainer myTrainer = new Trainer();
-    start();
+    Trainer myTrainer = new Trainer();
+    myTrainer.start();
   }
 }
